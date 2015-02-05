@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}DozoR{% endblock %}
+
+{% block content %}
+    {% if active_games %}
+        {% for game in active_games %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <em class="text-muted pull-right">{{ game.start|date:"j M Y" }}</em>
+                    <h3 class="panel-title">{{ game.name }}</h3>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Author</dt><dd>{{ game.author }}</dd>
+                        <dt>Start</dt><dd>{{ game.start|date:"G:i j M Y"}}</dd>
+                        <dt>Legend</dt><dd>{{ game.legend|safe|linebreaks }}</dd>
+                        <dt>Tools</dt><dd>{{ game.tools|safe|linebreaks }}</dd>
+                        <dt>Pre-task</dt><dd>{{ game.pretask|safe|linebreaks }}</dd>
+                    </dl>
+                    <a href="{% url 'go:index' game.id %}">Enter the game!</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>There are no planned games</h3>
+    {% endif %}
+{% endblock %}

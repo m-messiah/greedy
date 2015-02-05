@@ -11,7 +11,7 @@ class CodeInline(admin.TabularInline):
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("game", "num", "desc")
-    fields = ["game", "num", "desc", "hint1", "hint2"]
+    fields = ["game", "num", "desc", "hint1", "hint2", "is_bonus"]
 
     inlines = [CodeInline]
     list_filter = ["game"]
@@ -22,7 +22,8 @@ class GameAdmin(admin.ModelAdmin):
     list_display = ("name", "author", "start", "active")
     fieldsets = [
         (None,          {'fields': ["name", "author"]}),
-        ('Information', {'fields': ["legend", "prikvel", "start", "end"]})
+        ('Information', {'fields': ["legend", "tools",
+                                    "pretask", "start", "end"]})
     ]
 
     class ActiveGameFilter(admin.SimpleListFilter):

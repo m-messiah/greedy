@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DozoR</a>
+            <p class="navbar-text">{% block gamename %}{% endblock %}</p>
+        </div>
+        <div class="collapse navbar-collapse" id="top-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Statistics</a></li>
+                {% if username %}
+                    <li class="navbar-text">{{ username }}</li>
+                    <li><a href="#">Sign out</a></li>
+                    <li><a href="#">Sign out</a></li>
+                {% else %}
+                    <li><a href="#">Sign in</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% if error_message %}<div class="alert alert-{% if error_message.0 %}danger{% else %}success{% endif %}" role="alert">{{ error_message.1 }}</div>{% endif %}
+<div class="container-fluid">
+{% block content %}
+
+{% endblock %}
+</div>
+</body>
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</html>

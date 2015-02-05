@@ -1,24 +1,42 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'go/style.css' %}" />
-<div>
-    {% if active_games %}
-        {% for game in active_games %}
-            <div>
-                <h4>{{ game.name }}</h4>
-                <ul>
-                    <li>Author: {{ game.author }}</li>
-                    <li>Start: {{ game.start }}</li>
-                </ul>
-                <div>
-                    {{ game.legend }}
-                </div>
-                <div>
-                    {{ game.prikvel }}
-                </div>
-                <a href="{% url 'go:game' game.id %}">Enter the game!</a>
+{% load go_extras %}
+{% block title %}{{ game.name }}{% endblock %}
+{% block gamename %}{{ game.name }}{% endblock %}
+{% block content %}
+    {% for task in game.task_set.all %}
+        <div class="panel panel-{% if task.is_bonus %}warning{% else %}default{% endif %}">
+            <div class="panel-heading">
+                <span class="pull-right">{{ task.code_set.all | count_unposted }} remains</span>
+                <h3 class="panel-title">Task {{ task.num }}</h3>
             </div>
-        {% endfor %}
-    {% else %}
-        <h3>There are no planned games</h3>
-    {% endif %}
-</div>
+            <div class="panel-body">
+                <div>{{ task.desc|safe|linebreaks }}</div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><b>Hint 1</b><br>
+                    {{ task.hint1 }}
+                </li>
+                <!--li class="list-group-item"><b>Hint 2</b><br>
+                    {{ task.hint2 }}
+                </li-->
+                <li class="list-group-item"><b>Codes</b><br>
+                    {% for code in task.code_set.all %}
+                        <span class="{% if code.is_posted %}text-danger{% endif %}">{{ code.weight }} </span>
+                    {% endfor %}
+                </li>
+                <li class="list-group-item">
+                    <form class="form-inline" action="{% url 'go:index' game.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="task_id" value="{{ task.id }}"/>
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <input class="form-control" type="text" name="code" />
+                            <button class="btn btn-default" type="submit">Send</button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

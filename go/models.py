@@ -6,7 +6,8 @@ class Game(models.Model):
     name = models.CharField(max_length=100)
     legend = models.TextField()
     author = models.CharField(max_length=100)  # Change it to FK(user)
-    prikvel = models.TextField()
+    pretask = models.TextField()
+    tools = models.TextField(default="Automobile\nInternet device\nFlashlight")
     start = models.DateTimeField(default=timezone.datetime(2015, 1, 1, 22, 0))
     end = models.DateTimeField(default=timezone.datetime(2015, 1, 2, 7, 0))
 
@@ -25,6 +26,7 @@ class Task(models.Model):
     desc = models.TextField()
     hint1 = models.TextField(default="-")
     hint2 = models.TextField(default="-")
+    is_bonus = models.BooleanField(default=False)
 
     def __str__(self):
         return "%s: %s" % (self.num,
