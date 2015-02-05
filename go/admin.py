@@ -5,6 +5,7 @@ from django.utils import timezone
 
 class CodeInline(admin.TabularInline):
     model = Code
+    readonly_fields = ('post_time',)
     extra = 1
 
 

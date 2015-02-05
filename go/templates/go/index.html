@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'go/style.css' %}" />
+<div>
+    {% if active_games %}
+        {% for game in active_games %}
+            <div>
+                <h4>{{ game.name }}</h4>
+                <ul>
+                    <li>Author: {{ game.author }}</li>
+                    <li>Start: {{ game.start }}</li>
+                </ul>
+                <div>
+                    {{ game.legend }}
+                </div>
+                <div>
+                    {{ game.prikvel }}
+                </div>
+                <a href="{% url 'go:game' game.id %}">Enter the game!</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>There are no planned games</h3>
+    {% endif %}
+</div>
