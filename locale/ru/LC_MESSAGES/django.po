@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 14:54+0500\n"
+"POT-Creation-Date: 2015-02-06 15:55+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,31 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: greedy/settings.py:87
+#: greedy/settings.py:92
 msgid "English"
 msgstr ""
 
-#: greedy/settings.py:88
+#: greedy/settings.py:93
 msgid "Russian"
 msgstr ""
 
-#: templates/base.html:28
-msgid "Toggle navigation"
-msgstr "Меню"
+#: greedy/views.py:23
+msgid "Disabled user"
+msgstr "Пользователь отключен"
 
-#: templates/base.html:38
-msgid "Statistics"
-msgstr "Статистика"
+#: greedy/views.py:25
+msgid "Invalid user"
+msgstr "Неверное имя пользователя или пароль"
 
-#: templates/base.html:41
-msgid "Sign out"
-msgstr "Выйти"
+#: templates/base.html:35 templates/base.html.py:37
+msgid "Username"
+msgstr "Имя"
 
-#: templates/base.html:43
+#: templates/base.html:41 templates/base.html.py:43
+msgid "Password"
+msgstr "Пароль"
+
+#: templates/base.html:48 templates/base.html.py:77
 msgid "Sign in"
 msgstr "Войти"
 
-#: templates/base.html:46
+#: templates/base.html:62
+msgid "Toggle navigation"
+msgstr "Меню"
+
+#: templates/base.html:72
+msgid "Statistics"
+msgstr "Статистика"
+
+#: templates/base.html:75
+msgid "Sign out"
+msgstr "Выйти"
+
+#: templates/base.html:80
 msgid "Сменить язык"
 msgstr "Switch language"
 
@@ -65,15 +81,15 @@ msgstr "Дополнительные<br>принадлежности"
 
 #: templates/index.html:20
 msgid "Automobile"
-msgstr ""
+msgstr "Автомобиль"
 
 #: templates/index.html:20
 msgid "Internet device"
-msgstr ""
+msgstr "Устройство с возможностью выхода в интернет"
 
 #: templates/index.html:20
 msgid "Flashlight"
-msgstr ""
+msgstr "Фонарь"
 
 #: templates/index.html:22
 msgid "Pre-task"

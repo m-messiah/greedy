@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 14:54+0500\n"
+"POT-Creation-Date: 2015-02-06 15:55+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,19 +165,19 @@ msgstr "Код"
 msgid "Send"
 msgstr "Отправить"
 
-#: go/views.py:16
+#: go/views.py:18
 msgid "Wrong code"
 msgstr "Неверный код"
 
-#: go/views.py:19
+#: go/views.py:21
 #, python-format
 msgid "Code already posted at %s"
 msgstr "Код уже отправлен в %s"
 
-#: go/views.py:25
+#: go/views.py:27
 msgid "Code accepted"
 msgstr "Код принят"
 
-#: go/views.py:27
+#: go/views.py:29
 msgid "Invalid request"
 msgstr "Неправильный запрос"

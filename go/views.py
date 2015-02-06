@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from go.models import Game, Task, Code
 from django.utils.translation import ugettext as _
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def game(request, game_id):
     _game = get_object_or_404(Game, pk=game_id, end__gte=timezone.now())
     if request.method == 'GET':

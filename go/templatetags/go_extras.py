@@ -6,4 +6,4 @@ register = template.Library()
 
 @register.filter
 def count_unposted(values):
-    return len(values) - len(values.filter(is_posted=True))
+    return values.count() - values.filter(is_posted=True).count()
