@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.utils.translation import ugettext as _
 from go.models import Game, Task, Code
 from django.utils import timezone
+
 
 
 class CodeInline(admin.TabularInline):
@@ -22,18 +24,20 @@ class GameAdmin(admin.ModelAdmin):
     list_display = ("name", "author", "start", "active")
     fieldsets = [
         (None,          {'fields': ["name", "author"]}),
-        ('Information', {'fields': ["legend", "tools",
-                                    "pretask", "start", "end"]})
+        (_('Information'), {'fields': ["legend", "tools",
+                                       "pretask", "start", "end"]})
     ]
 
     class ActiveGameFilter(admin.SimpleListFilter):
-        title = "Active"
+        # Translators: It's title of filter
+        title = _('Active')
         parameter_name = 'active'
 
         def lookups(self, request, model_admin):
+            # Translators: Filter parameters
             return (
-                ('1', 'active'),
-                ('0', 'finished')
+                ('1', _('active')),
+                ('0', _('finished'))
             )
 
         def queryset(self, request, queryset):

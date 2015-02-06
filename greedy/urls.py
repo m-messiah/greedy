@@ -11,4 +11,5 @@ urlpatterns = patterns(
     url(r'^$', views.index, name='index'),
     url(r'^go/', include('go.urls', namespace="go")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 )

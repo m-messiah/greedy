@@ -1,26 +1,28 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load go_extras %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block title %}{{ game.name }}{% endblock %}
 {% block gamename %}{{ game.name }}{% endblock %}
 {% block content %}
     {% for task in game.task_set.all %}
         <div class="panel panel-{% if task.is_bonus %}warning{% else %}default{% endif %}">
             <div class="panel-heading">
-                <span class="pull-right">{{ task.code_set.all | count_unposted }} remains</span>
-                <h3 class="panel-title">Task {{ task.num }}</h3>
+                <span class="pull-right">{{ task.code_set.all | count_unposted }} {% trans 'remains' %}</span>
+                <h3 class="panel-title">{% trans 'Task' %} {{ task.num }}</h3>
             </div>
             <div class="panel-body">
                 <div>{{ task.desc|safe|linebreaks }}</div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item"><b>Hint 1</b><br>
+                <li class="list-group-item"><b>{% trans 'Hint 1' %}</b><br>
                     {{ task.hint1 }}
                 </li>
-                <!--li class="list-group-item"><b>Hint 2</b><br>
+                <!--li class="list-group-item"><b>{% trans 'Hint 2' %}</b><br>
                     {{ task.hint2 }}
                 </li-->
-                <li class="list-group-item"><b>Codes</b><br>
+                <li class="list-group-item"><b>{% trans 'Codes' %}</b><br>
                     {% for code in task.code_set.all %}
                         <span class="{% if code.is_posted %}text-danger{% endif %}">{{ code.weight }} </span>
                     {% endfor %}
@@ -30,9 +32,9 @@
                         {% csrf_token %}
                         <input type="hidden" name="task_id" value="{{ task.id }}"/>
                         <div class="form-group">
-                            <label for="code">Code</label>
+                            <label for="code">{% trans 'Code' %}</label>
                             <input class="form-control" type="text" name="code" />
-                            <button class="btn btn-default" type="submit">Send</button>
+                            <button class="btn btn-default" type="submit">{% trans 'Send' %}</button>
                         </div>
                     </form>
                 </li>

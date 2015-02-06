@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -10,11 +12,20 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <input name="next" type="hidden" value="#" />
+    {% get_language_info_list for LANGUAGES as languages %}
+    {% for language in languages %}
+    {% if language.code != LANGUAGE_CODE %}
+        <input name="language" value="{{ language.code }}" type="hidden">
+    {% endif %}
+    {% endfor %}
+</form>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">{% trans 'Toggle navigation' %}</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -24,14 +35,16 @@
         </div>
         <div class="collapse navbar-collapse" id="top-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Statistics</a></li>
+                <li><a href="#">{% trans 'Statistics' %}</a></li>
                 {% if username %}
                     <li class="navbar-text">{{ username }}</li>
-                    <li><a href="#">Sign out</a></li>
-                    <li><a href="#">Sign out</a></li>
+                    <li><a href="#">{% trans 'Sign out' %}</a></li>
                 {% else %}
-                    <li><a href="#">Sign in</a></li>
+                    <li><a href="#">{% trans 'Sign in'%}</a></li>
                 {% endif %}
+                <li>
+                    <a href="#" onclick="document.getElementById('lang-form').submit()"><i class="glyphicon glyphicon-globe" title="{% trans 'Сменить язык' %}"></i></a>
+                </li>
             </ul>
         </div>
     </div>

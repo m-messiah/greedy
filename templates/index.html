@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block title %}DozoR{% endblock %}
 
 {% block content %}
@@ -12,17 +14,18 @@
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Author</dt><dd>{{ game.author }}</dd>
-                        <dt>Start</dt><dd>{{ game.start|date:"G:i j M Y"}}</dd>
-                        <dt>Legend</dt><dd>{{ game.legend|safe|linebreaks }}</dd>
-                        <dt>Tools</dt><dd>{{ game.tools|safe|linebreaks }}</dd>
-                        <dt>Pre-task</dt><dd>{{ game.pretask|safe|linebreaks }}</dd>
+                        <dt>{% trans 'Author' %}</dt><dd>{{ game.author }}</dd>
+                        <dt>{% trans 'Start' %}</dt><dd>{{ game.start|date:"G:i j M Y"}}</dd>
+                        <dt>{% trans 'Legend' %}</dt><dd>{{ game.legend|safe|linebreaks }}</dd>
+                        <dt>{% trans 'Tools' %}</dt><dd>{% trans "Automobile" %}<br>{% trans 'Internet device' %}<br>{% trans 'Flashlight' %}<br>
+                        {{ game.tools|safe|linebreaks }}</dd>
+                        <dt>{% trans 'Pre-task' %}</dt><dd>{{ game.pretask|safe|linebreaks }}</dd>
                     </dl>
-                    <a href="{% url 'go:index' game.id %}">Enter the game!</a>
+                    <a href="{% url 'go:index' game.id %}">{% trans 'Enter the game!' %}</a>
                 </div>
             </div>
         {% endfor %}
     {% else %}
-        <h3>There are no planned games</h3>
+        <h3>{% trans 'There are no planned games' %}</h3>
     {% endif %}
 {% endblock %}
