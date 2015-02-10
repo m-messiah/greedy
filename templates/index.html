@@ -21,7 +21,7 @@
                         {{ game.tools|safe|linebreaks }}</dd>
                         <dt>{% trans 'Pre-task' %}</dt><dd>{{ game.pretask|safe|linebreaks }}</dd>
                     </dl>
-                    <a href="{% url 'go:index' game.id %}">{% trans 'Enter the game!' %}</a>
+                    <a class="btn btn-default pull-right" href="{% url 'go:index' game.id %}">{% trans 'Enter the game!' %}</a>
                 </div>
             </div>
         {% endfor %}

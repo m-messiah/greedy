@@ -2,12 +2,12 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import force_text, pgettext_lazy
+from django.contrib.auth.models import User
 
 
 class Game(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('name'))
     legend = models.TextField(verbose_name=_('legend'))
-    # Change it to FK(user)
     author = models.CharField(max_length=100, verbose_name=_('author'))
     pretask = models.TextField(verbose_name=_('pretask'))
     tools = models.TextField(
@@ -37,8 +37,14 @@ class Task(models.Model):
     game = models.ForeignKey(Game, verbose_name=_('game'))
     num = models.SmallIntegerField(verbose_name=_('num'))
     desc = models.TextField(verbose_name=_('text'))
+    duration = models.PositiveIntegerField(verbose_name=_('duration'),
+                                           default=90)
     hint1 = models.TextField(default="-", verbose_name=_('hint1'))
+    hint1_time = models.PositiveIntegerField(
+        default=30, verbose_name=_('hint1_time'))
     hint2 = models.TextField(default="-", verbose_name=_('hint2'))
+    hint2_time = models.PositiveIntegerField(
+        default=60, verbose_name=_('hint2_time'))
     is_bonus = models.BooleanField(default=False, verbose_name=_('is_bonus'))
 
     def __str__(self):
@@ -63,3 +69,10 @@ class Code(models.Model):
 
     verbose_name = _('code')
     verbose_name_plural = _('codes')
+
+
+class Player(models.Model):
+    user = models.OneToOneField(User)
+    current_task = models.ForeignKey(Task)
+    task_opened = models.DateTimeField(
+        default=timezone.datetime(2015, 1, 1, 22, 0))

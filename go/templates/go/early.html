@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load go_extras %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block title %}{{ game.name }}{% endblock %}
+{% block gamename %}{{ game.name }}{% endblock %}
+{% block content %}
+<h1>{% trans 'Welcome' %}, {{ user.username }}</h1>
+<dl>
+    <dt>{% trans 'Author' %}</dt><dd>{{ game.author }}</dd>
+    <dt>{% trans 'Legend' %}</dt><dd>{{ game.legend|safe|linebreaks }}</dd>
+</dl>
+{% endblock %}

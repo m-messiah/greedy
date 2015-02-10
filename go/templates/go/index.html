@@ -6,7 +6,6 @@
 {% block title %}{{ game.name }}{% endblock %}
 {% block gamename %}{{ game.name }}{% endblock %}
 {% block content %}
-    {% for task in game.task_set.all %}
         <div class="panel panel-{% if task.is_bonus %}warning{% else %}default{% endif %}">
             <div class="panel-heading">
                 <span class="pull-right">{{ task.code_set.all | count_unposted }} {% trans 'remains' %}</span>
@@ -40,5 +39,4 @@
                 </li>
             </ul>
         </div>
-    {% endfor %}
 {% endblock %}

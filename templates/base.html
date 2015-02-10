@@ -83,7 +83,7 @@
         </div>
     </div>
 </nav>
-{% if error_message %}<div class="alert alert-{% if error_message.0 %}danger{% else %}success{% endif %}" role="alert">{{ error_message.1 }}</div>{% endif %}
+{% if error_message %}<div class="alert alert-{% if error_message.0 %}danger{% else %}success{% endif %}" role="alert">{{ error_message.1 | safe}}</div>{% endif %}
 <div class="container-fluid">
 {% block content %}
 

@@ -1,8 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from go.models import Game, Task, Code
+from go.models import Game, Task, Code, Player
 from django.utils import timezone
-
 
 
 class CodeInline(admin.TabularInline):
@@ -13,7 +14,10 @@ class CodeInline(admin.TabularInline):
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("game", "num", "desc")
-    fields = ["game", "num", "desc", "hint1", "hint2", "is_bonus"]
+    fields = ["game", "num", "desc", "duration",
+              "hint1", "hint1_time",
+              "hint2", "hint2_time",
+              "is_bonus"]
 
     inlines = [CodeInline]
     list_filter = ["game"]
@@ -52,3 +56,16 @@ class GameAdmin(admin.ModelAdmin):
 
 admin.site.register(Game, GameAdmin)
 admin.site.register(Task, TaskAdmin)
+
+
+class UserInline(admin.StackedInline):
+    model = Player
+    can_delete = False
+    verbose_name_plural = 'Игрок'
+
+
+class UserAdmin(UserAdmin):
+    inlines = (UserInline, )
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

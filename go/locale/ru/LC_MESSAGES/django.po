@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 15:55+0500\n"
+"POT-Creation-Date: 2015-02-09 16:26+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,44 +98,72 @@ msgid "text"
 msgstr "текст"
 
 #: go/models.py:40
+msgid "duration"
+msgstr "продолжительность"
+
+#: go/models.py:42
 msgid "hint1"
 msgstr "подсказка 1"
 
-#: go/models.py:41
+#: go/models.py:44
+msgid "hint1_time"
+msgstr "время подсказки 1"
+
+#: go/models.py:45
 msgid "hint2"
 msgstr "подсказка 2"
 
-#: go/models.py:42
+#: go/models.py:47
+msgid "hint2_time"
+msgstr "время подсказки 2"
+
+#: go/models.py:48
 msgid "is_bonus"
 msgstr "бонусное"
 
-#: go/models.py:49 go/models.py:54
+#: go/models.py:55 go/models.py:60
 msgid "task"
 msgstr "задание"
 
-#: go/models.py:50
+#: go/models.py:56
 msgid "tasks"
 msgstr "задания"
 
-#: go/models.py:55 go/models.py:64
+#: go/models.py:61 go/models.py:70
 msgid "code"
 msgstr "код"
 
-#: go/models.py:56
+#: go/models.py:62
 msgid "weight"
 msgstr "ценность"
 
-#: go/models.py:57
+#: go/models.py:63
 msgid "posted"
 msgstr "принят"
 
-#: go/models.py:59
+#: go/models.py:65
 msgid "post_time"
 msgstr "время отправки"
 
-#: go/models.py:65
+#: go/models.py:71
 msgid "codes"
 msgstr "коды"
+
+#: go/templates/go/early.html:9
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: go/templates/go/early.html:11
+#, fuzzy
+#| msgid "author"
+msgid "Author"
+msgstr "автор"
+
+#: go/templates/go/early.html:12
+#, fuzzy
+#| msgid "legend"
+msgid "Legend"
+msgstr "легенда"
 
 #: go/templates/go/index.html:12
 msgid "remains"
@@ -165,19 +193,27 @@ msgstr "Код"
 msgid "Send"
 msgstr "Отправить"
 
-#: go/views.py:18
+#: go/views.py:20
+msgid "Game will start at"
+msgstr "Игра начнется в"
+
+#: go/views.py:23
+msgid "Now it is only"
+msgstr "Сейчас только лишь"
+
+#: go/views.py:33
 msgid "Wrong code"
 msgstr "Неверный код"
 
-#: go/views.py:21
+#: go/views.py:36
 #, python-format
 msgid "Code already posted at %s"
 msgstr "Код уже отправлен в %s"
 
-#: go/views.py:27
+#: go/views.py:42
 msgid "Code accepted"
 msgstr "Код принят"
 
-#: go/views.py:29
+#: go/views.py:44
 msgid "Invalid request"
 msgstr "Неправильный запрос"
